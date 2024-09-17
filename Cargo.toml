@@ -1,0 +1,13 @@
+[package]
+name = "modules"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = {version = "*",features = ["derive"],optional = true}
+rgb ={ version = "*",features = ["serde"],optional = true}
+
+[features]
+
+colors = ["dep:rgb"]
+shapes = ["colors","dep:serde","rgb?/serde"]
