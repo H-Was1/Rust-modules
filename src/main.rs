@@ -1,20 +1,42 @@
-mod modules;
-use modules::front;
-fn main() {
-    println!("Hello, world!");
-    eat_at_restaurant();
+trait Park {
+    fn park(&self);
 }
 
-pub fn eat_at_restaurant() {
-    // Absolute path
-    modules::front::hosting::add_to_waitlist();
+trait Paint {
+    fn paint(&self, color: &str) {
+        println!("{}", color)
+    }
+}
 
-    // Relative path
-    modules::front::hosting::add_to_waitlist();
+struct Vehicle_Info {
+    make: String,
+    model: String,
+    year: i32,
+}
 
-    // Absolute path with renaming
-    modules::front::hosting::seat_at_table();
+struct Car {
+    info: Vehicle_Info,
+}
 
-    // Relative path with renaming
-    modules::front::serving::take_order();
+impl Park for Car {
+    fn park(&self) {
+        println!("parking the {}", self.info.make);
+    }
+}
+impl Paint for Car {
+    
+}
+
+struct Truck {
+    info: Vehicle_Info,
+}
+
+impl Truck {
+    fn unload(&self) {
+        println!("unloading {}", self.info.make);
+    }
+}
+
+fn main() {
+    println!("Hello, world!");
 }
