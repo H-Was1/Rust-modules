@@ -23,9 +23,7 @@ impl Park for Car {
         println!("parking the {}", self.info.make);
     }
 }
-impl Paint for Car {
-    
-}
+impl Paint for Car {}
 
 struct Truck {
     info: Vehicle_Info,
@@ -39,4 +37,13 @@ impl Truck {
 
 fn main() {
     println!("Hello, world!");
+    let nissan = Car {
+        info: Vehicle_Info {
+            make: "Nissan".to_string(),
+            model: "Sentra".to_string(),
+            year: 2020,
+        },
+    };
+    nissan.park();
+    nissan.paint("red");
 }
