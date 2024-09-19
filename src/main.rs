@@ -46,4 +46,20 @@ fn main() {
     };
     nissan.park();
     nissan.paint("red");
+    paint_Silver(&nissan);
+}
+
+fn paint_Silver<T: Paint>(obj: &T) {
+    obj.paint("Silver");
+}
+
+fn paint_Silver2(obj: &impl Paint) {
+    obj.paint("Silver");
+}
+
+fn paint_silver3<T>(obj: &T)
+where
+    T: Paint,
+{
+    obj.paint("Silver");
 }
