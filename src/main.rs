@@ -1,65 +1,39 @@
-trait Park: Paint {
-    fn park(&self);
+struct Insect {
+    name: String,
+    capability: String,
 }
 
-trait Paint {
-    fn paint(&self, color: &str) {
-        println!("{}", color)
+struct Snake {
+    info: Insect,
+}
+
+struct Grasshopper {
+    info: Insect,
+}
+trait Move {
+    fn move__to(&self, x: i32, y: i32);
+}
+
+impl Move for Insect {
+    fn move__to(&self, x: i32, y: i32) {
+        println!("{} {} to {},{}", self.name, self.capability, x, y);
     }
 }
 
-struct Vehicle_Info {
-    make: String,
-    model: String,
-    year: i32,
-}
-
-struct Car {
-    info: Vehicle_Info,
-}
-
-impl Park for Car {
-    fn park(&self) {
-        println!("parking the {}", self.info.make);
-    }
-}
-impl Paint for Car {}
-
-struct Truck {
-    info: Vehicle_Info,
-}
-
-impl Truck {
-    fn unload(&self) {
-        println!("unloading {}", self.info.make);
-    }
+fn make_move(thing: impl Move) {
+    thing.move__to(3, -5);
 }
 
 fn main() {
-    println!("Hello, world!");
-    let nissan = Car {
-        info: Vehicle_Info {
-            make: "Nissan".to_string(),
-            model: "Sentra".to_string(),
-            year: 2020,
-        },
+    let python = Insect {
+        name: "python".to_string(),
+        capability:"Slithers".to_string()
     };
-    nissan.park();
-    nissan.paint("red");
-    paint_Silver(&nissan);
-}
+    let locust = Insect {
+        name: "locust".to_string(),
+        capability:"Flies".to_string()
+    };
 
-fn paint_Silver<T: Paint>(obj: &T) {
-    obj.paint("Silver");
-}
-
-fn paint_Silver2(obj: &impl Paint) {
-    obj.paint("Silver");
-}
-
-fn paint_silver3<T>(obj: &T)
-where
-    T: Paint,
-{
-    obj.paint("Silver");
+    make_move(python);
+    make_move(locust);
 }
