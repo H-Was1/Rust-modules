@@ -1,20 +1,39 @@
-mod modules;
-use modules::front;
-fn main() {
-    println!("Hello, world!");
-    eat_at_restaurant();
+struct Insect {
+    name: String,
+    capability: String,
 }
 
-pub fn eat_at_restaurant() {
-    // Absolute path
-    modules::front::hosting::add_to_waitlist();
+struct Snake {
+    info: Insect,
+}
 
-    // Relative path
-    modules::front::hosting::add_to_waitlist();
+struct Grasshopper {
+    info: Insect,
+}
+trait Move {
+    fn move__to(&self, x: i32, y: i32);
+}
 
-    // Absolute path with renaming
-    modules::front::hosting::seat_at_table();
+impl Move for Insect {
+    fn move__to(&self, x: i32, y: i32) {
+        println!("{} {} to {},{}", self.name, self.capability, x, y);
+    }
+}
 
-    // Relative path with renaming
-    modules::front::serving::take_order();
+fn make_move(thing: impl Move) {
+    thing.move__to(3, -5);
+}
+
+fn main() {
+    let python = Insect {
+        name: "python".to_string(),
+        capability: "Slithers".to_string(),
+    };
+    let locust = Insect {
+        name: "locust".to_string(),
+        capability: "Flies".to_string(),
+    };
+
+    make_move(python);
+    make_move(locust);
 }
