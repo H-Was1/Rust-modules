@@ -1,4 +1,4 @@
-trait Park {
+trait Park: Paint {
     fn park(&self);
 }
 
