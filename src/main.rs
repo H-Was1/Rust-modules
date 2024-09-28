@@ -27,11 +27,11 @@ fn make_move(thing: impl Move) {
 fn main() {
     let python = Insect {
         name: "python".to_string(),
-        capability:"Slithers".to_string()
+        capability: "Slithers".to_string(),
     };
     let locust = Insect {
         name: "locust".to_string(),
-        capability:"Flies".to_string()
+        capability: "Flies".to_string(),
     };
 
     make_move(python);
