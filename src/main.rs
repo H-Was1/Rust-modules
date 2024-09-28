@@ -1,32 +1,33 @@
-struct Insect {
-    name: String,
-    capability: String,
-}
-
-trait Move {
-    fn move__to(&self, x: i32, y: i32);
-}
-
-impl Move for Insect {
-    fn move__to(&self, x: i32, y: i32) {
-        println!("{} {} to {},{}", self.name, self.capability, x, y);
-    }
-}
-
-fn make_move(thing: impl Move) {
-    thing.move__to(3, -5);
+#[derive(Debug)]
+enum Ticket {
+    BackStage(f64, String),
+    Vip(f64, String),
+    GeneralAdmission(f64),
 }
 
 fn main() {
-    let python = Insect {
-        name: "python".to_string(),
-        capability: "Slithers".to_string(),
-    };
-    let locust = Insect {
-        name: "locust".to_string(),
-        capability: "Hops".to_string(),
-    };
+    let tickets = vec![
+        Ticket::BackStage(10.0, "VIP Seat".to_string()),
+        Ticket::Vip(20.0, "General Admission".to_string()),
+        Ticket::GeneralAdmission(15.0),
+    ];
+    for ticket in &tickets {
+        match ticket {
+            Ticket::BackStage(price, holder) => {
+                println!("Backstage Ticket Holder: {:?}, Price: {:?}", holder, price)
+            }
+            Ticket::Vip(price, holder) => {
+                println!("VIP Ticket Holder: {:?}, Price: {:?}", holder, price)
+            }
+            Ticket::GeneralAdmission(price) => println!("Standard Ticket - Price: {:?}", price),
+        }
+    }
 
-    make_move(python);
-    make_move(locust);
+    for ticket in &tickets {
+        match ticket {
+            Ticket::BackStage(price,.. ) => println!("Back Stage Ticket - Price: {:?}", price),
+            Ticket::Vip(price,.. ) => println!("VIP Ticket - Price: {:?}", price),
+            Ticket::GeneralAdmission(_) => println!("Standard Ticket"),
+        }
+    }
 }
