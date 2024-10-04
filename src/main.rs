@@ -1,28 +1,10 @@
-#[derive(Debug)]
-enum MenuChoice {
-    Mainmenu,
-    Start,
-    Quit,
-}
-
-fn get_choice(inp: &str) -> Result<MenuChoice, String> {
-    match inp {
-        "mainmenu" => Ok(MenuChoice::Mainmenu),
-        "start" => Ok(MenuChoice::Start),
-        "quit" => Ok(MenuChoice::Quit),
-        _ => Err("unknown choice".to_owned()),
-    }
-}
-fn print_choice(choice: &MenuChoice) {
-    println!("choice = {:?}", choice)
-}
-
-fn pick_choice(inp: &str) -> Result<(), String> {
-    let choice: MenuChoice = get_choice(inp)?;
-    print_choice(&choice);
-    Ok(())
-}
+// #[derive(Debug)]
 
 fn main() {
-    pick_choice("mainmenu");
+    let num = Some(-1);
+    let plus_one = num
+        .map(|num_1| num_1 + 1)
+        .filter(|word| word > &10)
+        .or_else(|| Some(3));
+    println!("{:?}", plus_one.unwrap())
 }
