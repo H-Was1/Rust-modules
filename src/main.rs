@@ -31,7 +31,7 @@ fn main() {
     };
     let locust = Insect {
         name: "locust".to_string(),
-        capability:"Flies".to_string()
+        capability:"Hops".to_string()
     };
 
     make_move(python);
